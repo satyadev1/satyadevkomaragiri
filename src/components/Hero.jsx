@@ -24,7 +24,7 @@ export function Hero() {
         >
           <div className="relative hero-photo-frame">
             <img
-              src="/profile-photo.jpg"
+              src={`${import.meta.env.BASE_URL}profile-photo.jpg`}
               alt="Komaragiri Satyadev"
               className="hero-photo md:w-64 md:h-64"
             />
