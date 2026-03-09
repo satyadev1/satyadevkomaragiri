@@ -81,10 +81,16 @@ export function Hero() {
         >
           {data.stats.map((stat, i) => (
             <div key={stat.label} className="text-center">
-              <div className="font-display text-2xl md:text-3xl font-semibold text-overlay-heading tabular-nums">
+              <div
+                className="font-display text-2xl md:text-3xl font-semibold tabular-nums"
+                style={{ color: 'var(--text-heading)' }}
+              >
                 {stat.value}
               </div>
-              <div className="text-overlay-muted text-xs uppercase tracking-wider mt-0.5">
+              <div
+                className="text-xs uppercase tracking-wider mt-0.5"
+                style={{ color: 'var(--muted)' }}
+              >
                 {stat.label}
               </div>
             </div>
