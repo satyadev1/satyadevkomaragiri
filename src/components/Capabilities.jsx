@@ -120,13 +120,13 @@ export function Capabilities() {
                     <h3 className={`font-display text-xl font-semibold mb-1 ${isHighlighted ? 'highlight-text' : 'text-accent hover-highlight-text'}`}>
                       {block.category}
                     </h3>
-                    <ul className="space-y-2">
+                    <ul className="space-y-3 mt-3">
                       {block.items.map((item, j) => (
                         <li
                           key={j}
-                          className={`text-[15px] leading-relaxed flex items-start gap-3 ${isHighlighted ? 'highlight-muted' : 'text-overlay-text hover-highlight-muted'}`}
+                          className={`text-[15px] leading-7 grid grid-cols-[0.7rem_1fr] items-start gap-x-3 ${isHighlighted ? 'highlight-muted' : 'text-overlay-text hover-highlight-muted'}`}
                         >
-                          <span className={`mt-1 shrink-0 ${isHighlighted ? 'highlight-muted' : 'text-accent/80 hover-highlight-muted'}`}>•</span>
+                          <span className={`block pt-0.5 text-center ${isHighlighted ? 'highlight-muted' : 'text-accent/80 hover-highlight-muted'}`}>•</span>
                           <span>{item}</span>
                         </li>
                       ))}

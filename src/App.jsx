@@ -11,7 +11,7 @@ import { Skills } from './components/Skills';
 import { Footer } from './components/Footer';
 import { Navigation } from './components/Navigation';
 
-const DEFAULT_THEME = 'sunshine-tech';
+const DEFAULT_THEME = 'total-dark';
 
 function App() {
   const [theme, setTheme] = useState(() => {
