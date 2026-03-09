@@ -939,21 +939,25 @@ body {
   text-align: left;
   border-radius: 9999px;
   padding: 0.65rem 0.85rem;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  background: color-mix(in srgb, var(--surface) 84%, rgba(255, 255, 255, 0.08));
   color: var(--text-heading);
   font-size: 0.84rem;
-  transition: transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+  font-weight: 500;
+  transition: transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease, color 0.22s ease, border-color 0.22s ease;
 }
 
 .theme-switcher-chip:hover {
   transform: translateX(-2px);
-  background: color-mix(in srgb, var(--accent) 10%, white);
+  background: color-mix(in srgb, var(--surface) 68%, var(--accent) 32%);
+  color: var(--text-heading);
 }
 
 .theme-switcher-chip-active {
-  background: color-mix(in srgb, var(--accent) 20%, white);
-  box-shadow: 0 0 0 1px var(--border), 0 10px 24px var(--glow-a);
+  background: var(--text-heading);
+  color: var(--bg);
+  border-color: color-mix(in srgb, var(--text-heading) 78%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--text-heading) 18%, transparent), 0 10px 24px var(--glow-a);
 }
 
 :root:not([data-theme="clean-executive"]) {
