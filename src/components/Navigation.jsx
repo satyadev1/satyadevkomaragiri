@@ -12,6 +12,7 @@ const sections = [
 
 const themes = [
   { id: 'total-dark', label: 'Total Dark' },
+  { id: 'confident-collaborator', label: 'Confident Collaborator' },
   { id: 'clean-executive', label: 'Clean Executive' },
   { id: 'ai-lab', label: 'AI Lab' },
 ];

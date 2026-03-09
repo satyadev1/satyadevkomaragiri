@@ -1,0 +1,16 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="160" height="160" fill="#0F172A"/>
+  <g opacity="0.12" stroke="#CBD5E1">
+    <path d="M0 40H160"/>
+    <path d="M0 80H160"/>
+    <path d="M0 120H160"/>
+    <path d="M40 0V160"/>
+    <path d="M80 0V160"/>
+    <path d="M120 0V160"/>
+  </g>
+  <g opacity="0.18" stroke="#38BDF8">
+    <path d="M0 0L160 160"/>
+    <path d="M120 0L160 40"/>
+    <path d="M0 120L40 160"/>
+  </g>
+</svg>

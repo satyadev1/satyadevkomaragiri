@@ -5,6 +5,11 @@ import * as THREE from 'three';
 const STAR_COUNT = 3500;
 const DRIFT_SPEED = 0.008;
 const THEME_COLORS = {
+  'confident-collaborator': {
+    glowA: new THREE.Color('#38bdf8'),
+    glowB: new THREE.Color('#14b8a6'),
+    layers: ['#cbd5e1', '#38bdf8', '#8b5cf6'],
+  },
   'total-dark': {
     glowA: new THREE.Color('#e5e7eb'),
     glowB: new THREE.Color('#60a5fa'),
@@ -28,7 +33,7 @@ const THEME_COLORS = {
   'clean-executive': {
     glowA: new THREE.Color('#94a3b8'),
     glowB: new THREE.Color('#475569'),
-    layers: ['#cbd5e1', '#94a3b8', '#64748b'],
+    layers: ['#64748b', '#475569', '#334155'],
   },
   'ai-lab': {
     glowA: new THREE.Color('#60a5fa'),
@@ -80,12 +85,18 @@ function StreakLayer({ count, spread, opacity, speed, color, streakLength, mouse
       const base = i * 6;
       const headX = pos[base];
       const headY = pos[base + 1];
-      const toCursorX = cursorX - headX;
-      const toCursorY = cursorY - headY;
+      const orbitAngle = t * 0.35 + i * 0.61;
+      const orbitRadius = spread * (0.03 + (i % 7) * 0.008);
+      const targetX = cursorX + Math.cos(orbitAngle) * orbitRadius;
+      const targetY = cursorY + Math.sin(orbitAngle) * orbitRadius;
+      const toCursorX = targetX - headX;
+      const toCursorY = targetY - headY;
       const dist = Math.max(2.5, Math.hypot(toCursorX, toCursorY));
-      const pullStrength = Math.max(0, 1 - dist / (spread * 0.55)) * speed * 0.65;
-      const dx = velocities[velocityIndex] + Math.sin(t * 0.2 + i * 0.37) * speed * 0.05 + (toCursorX / dist) * pullStrength;
-      const dy = velocities[velocityIndex + 1] + Math.cos(t * 0.24 + i * 0.29) * speed * 0.06 + (toCursorY / dist) * pullStrength;
+      const pullStrength = Math.max(0, 1 - dist / (spread * 0.55)) * speed * 1.3;
+      const swirlX = Math.cos(orbitAngle + Math.PI * 0.5) * speed * 0.12;
+      const swirlY = Math.sin(orbitAngle + Math.PI * 0.5) * speed * 0.12;
+      const dx = velocities[velocityIndex] + Math.sin(t * 0.2 + i * 0.37) * speed * 0.05 + (toCursorX / dist) * pullStrength + swirlX;
+      const dy = velocities[velocityIndex + 1] + Math.cos(t * 0.24 + i * 0.29) * speed * 0.06 + (toCursorY / dist) * pullStrength + swirlY;
       const dz = velocities[velocityIndex + 2] + Math.sin(t * 0.18 + i * 0.21) * speed * 0.04;
 
       pos[base] += dx;
