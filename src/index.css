@@ -187,13 +187,13 @@
   --footer-bg-start: rgba(255, 255, 255, 0.95);
   --footer-bg-mid: rgba(243, 240, 233, 0.94);
   --footer-bg-end: rgba(231, 227, 219, 0.95);
-  --footer-highlight-start: rgba(15, 118, 110, 0.92);
-  --footer-highlight-mid: rgba(51, 65, 85, 0.9);
-  --footer-highlight-end: rgba(148, 163, 184, 0.9);
-  --footer-text-strong: #0f172a;
-  --footer-text-body: #334155;
-  --footer-text-link: #0f172a;
-  --footer-text-subtle: #475569;
+  --footer-highlight-start: rgba(228, 239, 236, 0.98);
+  --footer-highlight-mid: rgba(214, 227, 224, 0.96);
+  --footer-highlight-end: rgba(193, 210, 214, 0.95);
+  --footer-text-strong: #08111f;
+  --footer-text-body: #1f3347;
+  --footer-text-link: #08111f;
+  --footer-text-subtle: #334155;
 }
 
 :root[data-theme="confident-collaborator"] {
@@ -782,7 +782,7 @@ body {
 }
 
 .logo-grid {
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
 }
 
 .company-strip {
@@ -809,6 +809,11 @@ body {
 .company-chip-name {
   color: var(--text-heading);
   font-weight: 600;
+}
+
+.logo-chip span {
+  font-size: 0.95rem;
+  line-height: 1.25;
 }
 
 .logo-chip-icon,
