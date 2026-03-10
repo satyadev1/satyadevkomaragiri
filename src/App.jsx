@@ -84,7 +84,7 @@ function App() {
         >
           <Scene
             scrollProgress={scrollProgress}
-            beamProgress={Math.min(1, scrollProgress / 0.82)}
+            beamProgress={scrollProgress}
             mouse={mouse}
             theme={theme}
           />

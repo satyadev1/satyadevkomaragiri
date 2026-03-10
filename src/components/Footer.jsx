@@ -86,7 +86,7 @@ export function Footer({ scrollProgress = 0 }) {
               ? { color: isCleanExecutive ? 'var(--footer-text-subtle)' : undefined }
               : { color: 'var(--footer-text-subtle)' }}
           >
-            © {new Date().getFullYear()} Komaragiri Satyadev · React & Three.js
+            © {new Date().getFullYear()} Komaragiri Satyadev
           </p>
         </div>
       </motion.div>

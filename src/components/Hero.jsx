@@ -55,7 +55,7 @@ export function Hero() {
           )}
         </motion.h1>
         <motion.p
-          className="text-overlay-text text-lg md:text-xl font-normal mb-2 max-w-2xl mx-auto"
+          className="hero-tagline text-lg md:text-xl font-medium mb-3 max-w-3xl mx-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.35, duration: 0.5 }}
@@ -134,12 +134,12 @@ export function Hero() {
               <span />
               <span />
             </div>
-            <span className="terminal-path">~/portfolio/software-profile.ts</span>
+            <span className="terminal-path">~/portfolio/SoftwareProfile.java</span>
           </div>
           <div className="terminal-body">
             <div className="terminal-line">
               <span className="terminal-prompt">$</span>
-              <span>stack.current()</span>
+              <span>stack.getCurrent()</span>
             </div>
             <div className="logo-grid">
               {data.stack.map((item) => (
@@ -151,7 +151,7 @@ export function Hero() {
             </div>
             <div className="terminal-line terminal-line-secondary">
               <span className="terminal-prompt">$</span>
-              <span>companies.experience()</span>
+              <span>companies.getExperience()</span>
             </div>
             <div className="company-strip">
               {companies.map((company) => (

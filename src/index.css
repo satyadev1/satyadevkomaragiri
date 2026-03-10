@@ -940,6 +940,12 @@ body {
   box-shadow: 0 0 30px var(--hero-photo-glow);
 }
 
+.hero-tagline {
+  color: var(--text-heading);
+  text-shadow: 0 6px 18px color-mix(in srgb, var(--glow-a) 45%, transparent);
+  letter-spacing: -0.01em;
+}
+
 .hero-status-dot {
   width: 0.5rem;
   height: 0.5rem;

@@ -27,8 +27,9 @@ function createCurve() {
     new THREE.Vector3(2, 4, -0.3),
     new THREE.Vector3(-1.5, 0, 0.2),
     new THREE.Vector3(1.5, -4, -0.5),
-    new THREE.Vector3(-2, -6, 0.3),
-    new THREE.Vector3(0, -6, 0),
+    new THREE.Vector3(-2.4, -7.5, 0.3),
+    new THREE.Vector3(1.4, -9.8, -0.25),
+    new THREE.Vector3(0, -12.8, 0),
   ];
   return new THREE.CatmullRomCurve3(points);
 }
