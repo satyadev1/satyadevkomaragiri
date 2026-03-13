@@ -59,6 +59,29 @@ export function Timeline({ scrollProgress = 0, scrollY = 0 }) {
     };
   }, [data.length]);
 
+  const sections = [
+    {
+      id: 'education',
+      title: 'Education',
+      copy: 'Academic foundation and business context alongside hands-on engineering work',
+      items: data.filter((event) => event.type === 'education'),
+    },
+    {
+      id: 'pre-ai',
+      title: 'Pre-AI Projects',
+      copy: 'Core product engineering, platform modernization, and delivery before AI-heavy product work',
+      items: data.filter((event) => event.type === 'work' && event.era === 'pre-ai'),
+    },
+    {
+      id: 'ai-era',
+      title: 'AI Focused Projects',
+      copy: 'AI-heavy product work across agentic systems, RAG, tuning, and full-stack delivery',
+      items: data.filter((event) => event.type === 'work' && event.era === 'ai-era'),
+    },
+  ];
+
+  const renderedItems = sections.flatMap((section) => section.items);
+
   return (
     <section ref={sectionRef} id="timeline" className="relative py-28 content-overlay">
       <div className="max-w-5xl mx-auto px-4">
@@ -69,18 +92,35 @@ export function Timeline({ scrollProgress = 0, scrollY = 0 }) {
           Where I’ve built and shipped systems across product engineering roles
         </p>
         <div className="space-y-20">
-          {data.map((event, index) => (
-            <div
-              key={event.id}
-              className="min-h-[260px] flex items-center"
-              data-timeline-index={index}
-            >
-              <TimelineNode
-                event={event}
-                index={index}
-                isLeft={index % 2 === 0}
-                isHighlighted={index === activeIndex}
-              />
+          {sections.map((section) => (
+            <div key={section.id} className="space-y-10">
+              <div className="text-center max-w-2xl mx-auto">
+                <div className="inline-flex items-center px-5 py-2 rounded-full border border-accent/30 bg-accent/15 text-accent text-sm uppercase tracking-[0.24em] font-semibold mb-4 shadow-[0_0_22px_rgba(59,130,246,0.14)]">
+                  {section.title}
+                </div>
+                <p className="text-overlay-muted text-sm md:text-base">
+                  {section.copy}
+                </p>
+              </div>
+              <div className="space-y-20">
+                {section.items.map((event) => {
+                  const index = renderedItems.findIndex((item) => item.id === event.id);
+                  return (
+                    <div
+                      key={event.id}
+                      className="min-h-[260px] flex items-center"
+                      data-timeline-index={index}
+                    >
+                      <TimelineNode
+                        event={event}
+                        index={index}
+                        isLeft={index % 2 === 0}
+                        isHighlighted={index === activeIndex}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           ))}
         </div>

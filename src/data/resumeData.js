@@ -175,6 +175,7 @@ export const timeline = [
   {
     id: 'hexagon',
     type: 'work',
+    era: 'pre-ai',
     yearStart: 2017,
     yearEnd: 2021,
     label: 'Software Developer / Senior Software Developer',
@@ -199,6 +200,7 @@ export const timeline = [
   {
     id: 'persistent',
     type: 'work',
+    era: 'pre-ai',
     yearStart: 2021,
     yearEnd: 2023,
     label: 'Engineering Lead',
@@ -212,6 +214,7 @@ export const timeline = [
   {
     id: 'opentext',
     type: 'work',
+    era: 'ai-era',
     yearStart: 2023,
     yearEnd: 2025,
     label: 'Senior Software Developer',
@@ -225,6 +228,7 @@ export const timeline = [
   {
     id: 'sonatype',
     type: 'work',
+    era: 'ai-era',
     yearStart: 2025,
     yearEnd: null,
     label: 'Senior Software Developer',
