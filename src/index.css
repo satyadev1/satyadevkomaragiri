@@ -1013,6 +1013,10 @@ body {
   margin-bottom: 0.75rem;
 }
 
+.theme-switcher-label-secondary {
+  margin-top: 1rem;
+}
+
 .theme-switcher-list {
   display: flex;
   flex-direction: column;
@@ -1042,6 +1046,69 @@ body {
   color: var(--bg);
   border-color: color-mix(in srgb, var(--text-heading) 78%, transparent);
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--text-heading) 18%, transparent), 0 10px 24px var(--glow-a);
+}
+
+.background-controls {
+  position: fixed;
+  left: 2rem;
+  bottom: 2rem;
+  width: min(28rem, calc(100vw - 4rem));
+  padding: 1rem 1.1rem;
+  border-radius: 1.25rem;
+  background: color-mix(in srgb, var(--surface) 94%, white);
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 40px var(--card-shadow-b);
+  backdrop-filter: blur(16px);
+  z-index: 50;
+}
+
+.background-controls-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1rem;
+}
+
+.background-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.background-control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.background-control-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.background-control-value {
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.background-control-input {
+  width: 100%;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .background-controls {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    width: auto;
+  }
+
+  .background-controls-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 :root:not([data-theme="clean-executive"]) {

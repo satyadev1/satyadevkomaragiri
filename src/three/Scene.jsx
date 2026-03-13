@@ -5,7 +5,14 @@ import { AnimatedBackground } from './AnimatedBackground';
 import { BeamCurve, createCurve } from './BeamCurve';
 import { BeamHead } from './BeamHead';
 
-export function Scene({ scrollProgress, beamProgress, mouse = { x: 0, y: 0 }, theme = 'sunshine-tech' }) {
+export function Scene({
+  scrollProgress,
+  beamProgress,
+  mouse = { x: 0, y: 0 },
+  theme = 'sunshine-tech',
+  backgroundMode = 'streak-field',
+  backgroundSettings = { speed: 1, gravity: 1, spread: 1, density: 1 },
+}) {
   const progress = typeof beamProgress === 'number' ? beamProgress : scrollProgress;
   const groupRef = useRef();
   const mouseRef = useRef(mouse);
@@ -28,7 +35,12 @@ export function Scene({ scrollProgress, beamProgress, mouse = { x: 0, y: 0 }, th
   return (
     <>
       <group ref={groupRef}>
-        <AnimatedBackground mouse={mouse} theme={theme} />
+        <AnimatedBackground
+          mouse={mouse}
+          theme={theme}
+          mode={backgroundMode}
+          settings={backgroundSettings}
+        />
         <BeamCurve scrollProgress={progress} />
         <BeamHead scrollProgress={progress} />
       </group>
