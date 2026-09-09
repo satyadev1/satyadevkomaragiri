@@ -4,9 +4,9 @@ import Lenis from 'lenis';
 import { Scene } from './three/Scene';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
+import { Achievements } from './components/Achievements';
 import { Capabilities } from './components/Capabilities';
 import { Timeline } from './components/Timeline';
-import { Featured } from './components/Featured';
 import { Skills } from './components/Skills';
 import { Footer } from './components/Footer';
 import { Navigation } from './components/Navigation';
@@ -56,7 +56,6 @@ function App() {
   const deferredBackgroundMode = useDeferredValue(backgroundMode);
   const deferredBackgroundSettings = useDeferredValue(backgroundSettings);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [scrollY, setScrollY] = useState(0);
   const [mouse, setMouse] = useState({ x: 0, y: 0, clientX: 0, clientY: 0 });
 
   useEffect(() => {
@@ -83,7 +82,6 @@ function App() {
     });
 
     const onScroll = ({ scroll }) => {
-      setScrollY(scroll);
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const progress = max > 0 ? Math.min(1, scroll / max) : 0;
       setScrollProgress(progress);
@@ -133,11 +131,11 @@ function App() {
       <div className="content-overlay relative">
         <Hero />
         <About />
+        <Achievements />
         <Capabilities />
-        <Timeline scrollProgress={scrollProgress} scrollY={scrollY} />
-        <Featured />
+        <Timeline />
         <Skills />
-        <Footer scrollProgress={scrollProgress} />
+        <Footer />
       </div>
 
       <Navigation

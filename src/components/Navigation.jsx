@@ -1,12 +1,13 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Menu, Settings2, X } from 'lucide-react';
 
 const sections = [
-  { id: 'hero', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'capabilities', label: 'What I do' },
+  { id: 'about', label: 'Approach' },
+  { id: 'achievements', label: 'Impact' },
+  { id: 'capabilities', label: 'Expertise' },
   { id: 'timeline', label: 'Experience' },
-  { id: 'featured', label: 'Featured' },
-  { id: 'skills', label: 'Skills' },
+  { id: 'skills', label: 'Toolkit' },
   { id: 'footer', label: 'Contact' },
 ];
 
@@ -23,7 +24,7 @@ const backgroundModes = [
   { id: 'shooting-star', label: 'Shooting Star' },
   { id: 'flow-ribbons', label: 'Flow Ribbons' },
   { id: 'rocket-fleet', label: 'Rocket Fleet' },
-  { id: 'robot-scouts', label: 'Robot Fleet' },
+  { id: 'robot-scouts', label: 'Robot Scouts' },
   { id: 'ai-signals', label: 'AI Signals' },
 ];
 
@@ -43,101 +44,105 @@ export function Navigation({
   onBackgroundSettingsChange,
   showBackgroundControls = false,
 }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [devOpen, setDevOpen] = useState(false);
+
   const scrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMenuOpen(false);
   };
 
   const updateSetting = (id, value) => {
-    onBackgroundSettingsChange((current) => ({
-      ...current,
-      [id]: Number(value),
-    }));
+    onBackgroundSettingsChange((current) => ({ ...current, [id]: Number(value) }));
   };
 
   return (
     <>
-    <nav className="fixed right-6 top-1/2 -translate-y-1/2 z-50 content-overlay" aria-label="Page sections">
-      <motion.div
-        className="theme-switcher"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.4, duration: 0.5 }}
-      >
-        <div className="theme-switcher-label">Themes</div>
-        <div className="theme-switcher-list">
-          {themes.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => onThemeChange(item.id)}
-              className={`theme-switcher-chip ${theme === item.id ? 'theme-switcher-chip-active' : ''}`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-        {showBackgroundControls ? (
-          <>
-            <div className="theme-switcher-label theme-switcher-label-secondary">Background</div>
-            <div className="theme-switcher-list">
-              {backgroundModes.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => onBackgroundModeChange(item.id)}
-                  className={`theme-switcher-chip ${backgroundMode === item.id ? 'theme-switcher-chip-active' : ''}`}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </>
-        ) : null}
-      </motion.div>
-      <ul className="hidden md:flex flex-col gap-5">
-        {sections.map((s) => (
-          <li key={s.id}>
-            <motion.button
-              onClick={() => scrollTo(s.id)}
-              className="nav-dot"
-              whileHover={{ scale: 1.4 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label={`Go to ${s.label}`}
-            />
-          </li>
-        ))}
-      </ul>
-    </nav>
-    {showBackgroundControls ? (
-      <motion.div
-        className="background-controls content-overlay"
-        initial={{ opacity: 0, y: 18 }}
+      <motion.nav
+        className="site-nav content-overlay"
+        initial={{ opacity: 0, y: -18 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.52, duration: 0.45 }}
+        transition={{ duration: 0.55 }}
+        aria-label="Primary navigation"
       >
-        <div className="theme-switcher-label">Background Controls</div>
-        <div className="background-controls-grid">
-          {controlItems.map((item) => (
-            <label key={item.id} className="background-control">
-              <span className="background-control-row">
-                <span className="background-control-label">{item.label}</span>
-                <span className="background-control-value">{backgroundSettings[item.id].toFixed(2)}x</span>
-              </span>
-              <input
-                className="background-control-input"
-                type="range"
-                min={item.min}
-                max={item.max}
-                step={item.step}
-                value={backgroundSettings[item.id]}
-                onChange={(e) => updateSetting(item.id, e.target.value)}
-              />
+        <div className="nav-shell">
+          <button type="button" className="nav-brand" onClick={() => scrollTo('hero')} aria-label="Back to top">
+            <span>KS</span>
+            <strong>Komaragiri Satyadev</strong>
+          </button>
+
+          <div className="nav-links">
+            {sections.map((section) => (
+              <button type="button" key={section.id} onClick={() => scrollTo(section.id)}>{section.label}</button>
+            ))}
+          </div>
+
+          <div className="nav-actions">
+            <label className="theme-control">
+              <span className="sr-only">Select theme</span>
+              <select value={theme} onChange={(event) => onThemeChange(event.target.value)}>
+                {themes.map((item) => <option value={item.id} key={item.id}>{item.label}</option>)}
+              </select>
             </label>
-          ))}
+            <button className="nav-menu-button" type="button" onClick={() => setMenuOpen((open) => !open)} aria-label="Toggle navigation">
+              {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
-      </motion.div>
-    ) : null}
+      </motion.nav>
+
+      <AnimatePresence>
+        {menuOpen ? (
+          <motion.div
+            className="mobile-nav content-overlay"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+          >
+            {sections.map((section) => (
+              <button type="button" key={section.id} onClick={() => scrollTo(section.id)}>{section.label}</button>
+            ))}
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+
+      {showBackgroundControls ? (
+        <div className="dev-controls-wrap content-overlay">
+          <button className="dev-controls-toggle" type="button" onClick={() => setDevOpen((open) => !open)}>
+            <Settings2 size={18} />
+            Background lab
+          </button>
+          <AnimatePresence>
+            {devOpen ? (
+              <motion.div
+                className="dev-controls"
+                initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 12, scale: 0.98 }}
+              >
+                <div className="dev-control-heading">
+                  <span>Local development only</span>
+                  <button type="button" onClick={() => setDevOpen(false)} aria-label="Close background controls"><X size={17} /></button>
+                </div>
+                <label className="dev-select">
+                  <span>Mode</span>
+                  <select value={backgroundMode} onChange={(event) => onBackgroundModeChange(event.target.value)}>
+                    {backgroundModes.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
+                  </select>
+                </label>
+                <div className="dev-slider-grid">
+                  {controlItems.map((item) => (
+                    <label className="dev-slider" key={item.id}>
+                      <span><strong>{item.label}</strong><small>{backgroundSettings[item.id].toFixed(2)}x</small></span>
+                      <input type="range" min={item.min} max={item.max} step={item.step} value={backgroundSettings[item.id]} onChange={(event) => updateSetting(item.id, event.target.value)} />
+                    </label>
+                  ))}
+                </div>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+        </div>
+      ) : null}
     </>
   );
 }

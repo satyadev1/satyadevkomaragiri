@@ -1,12 +1,13 @@
 export const hero = {
   name: 'Komaragiri Satyadev',
-  title: 'Senior Software Developer',
+  title: 'Senior Software Engineer',
   titleAt: 'Sonatype',
   experience: '8 years',
   location: 'Hyderabad, India',
-  tagline: 'Driving AI, RAG, tuning, and full-stack engineering in Sonatype Firewall',
-  taglineLong: 'Enthusiastic software developer focused on learning, building, and improving systems through hands-on engineering. My aim is to contribute meaningful products with strong technical execution and continuous growth.',
-  summary: 'Senior Software Developer with 8 years of experience in software engineering, skilled in Java, Spring Boot, Hibernate, MSSQL, Oracle DB, Kubernetes, GCP, and RESTful APIs. Currently working at Sonatype since December 2025 on AI initiatives in the Firewall product, with focus on RAG, tuning, full-stack engineering, deployments, and high-impact issue resolution. Previously contributed to Digital Workforce solutions at OpenText (OTEX) with Agentic AI, Python, React, and Pinecone DB.',
+  availability: 'Building AI-powered products and resilient platforms',
+  tagline: 'Senior Software Engineer shaping AI systems, full-stack products, and high-scale platform experiences.',
+  taglineLong: 'I turn complex engineering problems into reliable, human-centered products through thoughtful architecture, hands-on delivery, and close collaboration.',
+  summary: 'Senior Software Engineer with 8+ years of experience across AI, Java platforms, React products, cloud deployments, performance engineering, and secure enterprise systems. I work end to end, from architecture and APIs to product experience, observability, and production delivery.',
   stats: [
     { value: '8+', label: 'Years' },
     { value: '5', label: 'Roles' },
@@ -58,26 +59,56 @@ export const companies = [
 ];
 
 export const about = {
-  headline: 'Building AI-powered product systems',
-  subline: 'As a Senior Software Developer at Sonatype since December 2025, I work on AI initiatives in the Sonatype Firewall product with emphasis on RAG, tuning, full-stack engineering, and deployments. My recent experience also includes Digital Workforce solutions at OpenText (OTEX), spanning microservices, cloud, backend systems, and full-stack product work.',
+  eyebrow: 'How I work',
+  headline: 'Deep engineering, clear outcomes, no hand-offs.',
+  subline: 'I enjoy the full arc of product engineering: understanding the problem, shaping the architecture, building across the stack, measuring performance, and supporting the result in production.',
   bullets: [
-    { title: 'AI, RAG & Tuning', desc: 'Firewall product intelligence, retrieval and quality tuning' },
+    { title: 'AI Systems', desc: 'Agentic workflows, RAG, evaluation, and quality tuning' },
     { title: 'Microservices & Cloud', desc: 'Spring Boot, Dropwizard, Kubernetes, deployments' },
     { title: 'Hands-On Development', desc: 'Full-stack engineering across React and Java services' },
-    { title: 'Execution', desc: 'Critical fixes, deployments, reviews, shipped outcomes' },
+    { title: 'Engineering Quality', desc: 'Performance profiling, reviews, testing, and production reliability' },
   ],
 };
 
+export const achievements = [
+  {
+    type: 'award',
+    year: '2026',
+    title: 'Vista Hackathon Winner',
+    summary: 'Won with a cross-functional team for an Agentic AI framework designed for multi-agent orchestration.',
+    highlight: 'Agentic AI',
+  },
+  {
+    type: 'scale',
+    year: 'Performance',
+    title: 'High-throughput JVM engineering',
+    summary: 'Profiled and optimized critical Java paths under loads of 1,500+ requests per second.',
+    highlight: '1,500+ RPS',
+  },
+  {
+    type: 'impact',
+    year: 'Optimization',
+    title: 'Lowered CPU overhead',
+    summary: 'Reduced CPU consumption on hot evaluation paths through single-pass processing and object reuse.',
+    highlight: '~23%',
+  },
+  {
+    type: 'platform',
+    year: 'Ecosystems',
+    title: 'Multi-format platform delivery',
+    summary: 'Built integrations spanning Maven, npm, PyPI, Swift, Docker, and NuGet workflows.',
+    highlight: '6 formats',
+  },
+];
+
 export const capabilities = [
   {
-    category: 'Execution & delivery',
+    category: 'Product Engineering',
     icon: 'leadership',
     items: [
-      'Shipping strong execution on Sonatype Firewall through bug fixing, full-stack delivery, deployments, and review support',
-      'Individual contributor at Persistent Systems delivering backend and product work',
-      'Strong delivery quality at Hexagon with zero CR/SR rejections',
-      'Delivered vendor work for IBM Security Identity projects 20 days early through Persistent Systems',
-      'Worked closely with client and in-house architects on implementation',
+      'Own features from problem framing and architecture through production delivery',
+      'Build full-stack workflows across React interfaces and Java services',
+      'Collaborate closely with product, security, architecture, and quality teams',
     ],
   },
   {
@@ -85,9 +116,9 @@ export const capabilities = [
     icon: 'backend',
     items: [
       'Java, Spring Boot, Spring MVC, Hibernate, RESTful APIs',
-      'Python APIs (Fast API), Pinecone, Agentic AI pipelines',
+      'Python APIs, retrieval systems, and agentic AI pipelines',
       'Microservices design; migration from legacy (Struts → Spring Boot)',
-      'Unit tests, code quality (Sonar), Gradle builds',
+      'Secure API design, testing, profiling, and production diagnostics',
     ],
   },
   {
@@ -96,17 +127,16 @@ export const capabilities = [
     items: [
       'GCP, AWS; Kubernetes, Docker, Helm',
       'Terraform, GitLab CI/CD, Kibana',
-      'Deployment and pipeline management for cloud-native apps',
+      'Deployment and delivery pipelines for cloud-native applications',
     ],
   },
   {
-    category: 'AI & modern product',
+    category: 'AI & Agentic Systems',
     icon: 'ai',
     items: [
-      'AI work in Sonatype Firewall with RAG, tuning, and product integration focus',
-      'Agentic AI, Digital Workers, Crew AI, Embed Chain',
-      'React UI for digital workforce and product catalog (Aviator)',
-      'User-based access control; feature ownership end-to-end',
+      'Agentic AI frameworks and multi-agent orchestration',
+      'RAG pipelines, retrieval quality, evaluation, and tuning',
+      'AI capabilities integrated into complete product experiences',
     ],
   },
   {
@@ -114,7 +144,7 @@ export const capabilities = [
     icon: 'stack',
     items: [
       'React, jQuery, Vanilla JS, D3 for dashboards and workflows',
-      'MS SQL, Oracle DB, Pinecone; data migration and schema design',
+      'PostgreSQL, MS SQL, Oracle DB, Pinecone, and schema design',
       'Localization, bidirectional support, complex forms and workflows',
     ],
   },
@@ -123,7 +153,7 @@ export const capabilities = [
 export const featured = [
   {
     title: 'Sonatype',
-    desc: 'Current role since December 2025, driving AI work in Sonatype Firewall with focus on RAG, tuning, full-stack engineering, deployments, and critical fixes.',
+    desc: 'Senior Software Engineer focused on AI-assisted product experiences, full-stack engineering, performance, and production delivery.',
     tag: 'Current',
     logoUrl: 'https://cdn.simpleicons.org/sonatype',
     fallbackLogoUrl: 'https://www.google.com/s2/favicons?domain=sonatype.com&sz=128',
@@ -152,11 +182,11 @@ export const featured = [
 ];
 
 export const skills = {
-  backend: ['Java', 'Spring Boot', 'Spring MVC', 'Hibernate', 'RESTful APIs', 'Python', 'Fast API', 'JUnit', 'Gradle'],
+  backend: ['Java', 'Spring Boot', 'Spring MVC', 'Hibernate', 'RESTful APIs', 'Python', 'FastAPI', 'JUnit', 'Gradle'],
   cloudDevOps: ['Google Cloud Platform (GCP)', 'Kubernetes', 'Docker', 'Helm', 'Terraform', 'GitLab CI/CD', 'Kibana'],
-  frontend: ['React JS', 'jQuery', 'Vanilla JS', 'D3'],
-  data: ['Microsoft SQL Server', 'Oracle DB', 'Pinecone DB'],
-  ai: ['Agentic AI', 'RAG', 'Model Tuning', 'Crew AI', 'Embed Chain'],
+  frontend: ['React', 'jQuery', 'Vanilla JS', 'D3'],
+  data: ['Microsoft SQL Server', 'Oracle DB', 'Pinecone'],
+  ai: ['Agentic AI', 'RAG', 'Model Tuning', 'CrewAI', 'Embedchain'],
   methodologies: ['Scrum', 'Agile', 'Software Bug Management'],
 };
 
@@ -207,7 +237,7 @@ export const timeline = [
     company: 'Persistent Systems',
     location: 'Hyderabad',
     description: 'Worked as a vendor through Persistent Systems on IBM Security Identity Governance & Intelligence — Certification Campaign Management, plus IBM Security Identity Manager design forms, workflow, localization, and 125+ bug fixes. Delivered the engagement 20 days early while pursuing MBA (Osmania University).',
-    tech: ['Java 8', 'Spring Boot', 'REST API', 'Vanilla JS', 'D3', 'Rest API'],
+    tech: ['Java 8', 'Spring Boot', 'REST API', 'Vanilla JS', 'D3'],
     logoUrl: 'https://cdn.simpleicons.org/persistent',
     fallbackLogoUrl: 'https://www.persistent.com/wp-content/uploads/2020/09/persistent-systems-header-logo.png',
   },
@@ -221,7 +251,7 @@ export const timeline = [
     company: 'OpenText (OTEX)',
     location: 'Hyderabad',
     description: 'Digital Workforce (DWF): Agentic AI, Python APIs for Pinecone, React UI for digital workers, user-based access control. Process Automation: Spring Boot migration, GCP/AWS deployment, Helm, Terraform. Aviator: React-based chatbot product catalog.',
-    tech: ['Agentic AI', 'Python', 'React', 'Pinecone DB', 'Spring Boot', 'Kubernetes', 'GCP', 'Terraform', 'React JS'],
+    tech: ['Agentic AI', 'Python', 'React', 'Pinecone DB', 'Spring Boot', 'Kubernetes', 'GCP', 'Terraform'],
     logoUrl: 'https://cdn.simpleicons.org/opentext',
     fallbackLogoUrl: 'https://www.google.com/s2/favicons?domain=opentext.com&sz=128',
   },
@@ -231,14 +261,14 @@ export const timeline = [
     era: 'ai-era',
     yearStart: 2025,
     yearEnd: null,
-    label: 'Senior Software Developer',
+    label: 'Senior Software Engineer',
     company: 'Sonatype',
     location: 'Hyderabad',
-    description: 'Working at Sonatype since December 2025 on AI initiatives in the Sonatype Firewall product. Focused on RAG, tuning, full-stack engineering, deployments, critical bug fixing, and hands-on product delivery across UI and services.',
-    tech: ['AI', 'RAG', 'Model Tuning', 'Sonatype Firewall', 'React', 'Java', 'Dropwizard', 'Spring Boot', 'Deployments'],
+    description: 'Building AI-assisted product capabilities and reliable full-stack experiences across React, Java services, and cloud delivery. The role combines hands-on feature ownership, performance engineering, production reliability, and collaborative technical execution.',
+    tech: ['Agentic AI', 'RAG', 'Model Tuning', 'React', 'Java', 'Dropwizard', 'Spring Boot', 'Deployments'],
     logoUrl: 'https://cdn.simpleicons.org/sonatype',
     fallbackLogoUrl: 'https://www.google.com/s2/favicons?domain=sonatype.com&sz=128',
   },
 ];
 
-export default { hero, companies, about, capabilities, featured, skills, timeline };
+export default { hero, companies, about, achievements, capabilities, featured, skills, timeline };
