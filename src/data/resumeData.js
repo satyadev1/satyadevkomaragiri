@@ -2,14 +2,14 @@ export const hero = {
   name: 'Komaragiri Satyadev',
   title: 'Senior Software Engineer',
   titleAt: 'Sonatype',
-  experience: '8 years',
+  experience: '9+ years',
   location: 'Hyderabad, India',
   availability: 'Building AI-powered products and resilient platforms',
   tagline: 'Senior Software Engineer shaping AI systems, full-stack products, and high-scale platform experiences.',
   taglineLong: 'I turn complex engineering problems into reliable, human-centered products through thoughtful architecture, hands-on delivery, and close collaboration.',
-  summary: 'Senior Software Engineer with 8+ years of experience across AI, Java platforms, React products, cloud deployments, performance engineering, and secure enterprise systems. I work end to end, from architecture and APIs to product experience, observability, and production delivery.',
+  summary: 'Senior Software Engineer with 9+ years of experience across AI, Java platforms, React products, cloud deployments, performance engineering, and secure enterprise systems. I work end to end, using effective AI-assisted delivery methods to move from architecture and APIs through product experience, observability, and production delivery.',
   stats: [
-    { value: '8+', label: 'Years' },
+    { value: '9+', label: 'Years' },
     { value: '5', label: 'Roles' },
   ],
   contact: {
@@ -63,7 +63,7 @@ export const about = {
   headline: 'Deep engineering, clear outcomes, no hand-offs.',
   subline: 'I enjoy the full arc of product engineering: understanding the problem, shaping the architecture, building across the stack, measuring performance, and supporting the result in production.',
   bullets: [
-    { title: 'AI Systems', desc: 'Agentic workflows, RAG, evaluation, and quality tuning' },
+    { title: 'AI Systems', desc: 'Agentic workflows, RAG, evaluation, token management, and quality tuning' },
     { title: 'Microservices & Cloud', desc: 'Spring Boot, Dropwizard, Kubernetes, deployments' },
     { title: 'Hands-On Development', desc: 'Full-stack engineering across React and Java services' },
     { title: 'Engineering Quality', desc: 'Performance profiling, reviews, testing, and production reliability' },
@@ -74,9 +74,10 @@ export const achievements = [
   {
     type: 'award',
     year: '2026',
-    title: 'Vista Hackathon Winner',
-    summary: 'Won with a cross-functional team for an Agentic AI framework designed for multi-agent orchestration.',
+    title: '3rd Place · Vista Hackathon',
+    summary: 'Secured third place with a cross-functional team for an Agentic AI framework designed for multi-agent orchestration.',
     highlight: 'Agentic AI',
+    image: 'vista-hackathon-2026.jpg',
   },
   {
     type: 'scale',
@@ -108,6 +109,7 @@ export const capabilities = [
     items: [
       'Own features from problem framing and architecture through production delivery',
       'Build full-stack workflows across React interfaces and Java services',
+      'Apply effective Claude-assisted working methods and an AI-PDLC process',
       'Collaborate closely with product, security, architecture, and quality teams',
     ],
   },
@@ -136,6 +138,7 @@ export const capabilities = [
     items: [
       'Agentic AI frameworks and multi-agent orchestration',
       'RAG pipelines, retrieval quality, evaluation, and tuning',
+      'Token budgeting, context management, and efficient model interaction',
       'AI capabilities integrated into complete product experiences',
     ],
   },
@@ -186,8 +189,8 @@ export const skills = {
   cloudDevOps: ['Google Cloud Platform (GCP)', 'Kubernetes', 'Docker', 'Helm', 'Terraform', 'GitLab CI/CD', 'Kibana'],
   frontend: ['React', 'jQuery', 'Vanilla JS', 'D3'],
   data: ['Microsoft SQL Server', 'Oracle DB', 'Pinecone'],
-  ai: ['Agentic AI', 'RAG', 'Model Tuning', 'CrewAI', 'Embedchain'],
-  methodologies: ['Scrum', 'Agile', 'Software Bug Management'],
+  ai: ['Agentic AI', 'RAG', 'Model Tuning', 'Token Management', 'Claude-assisted Development', 'CrewAI', 'Embedchain'],
+  methodologies: ['AI-PDLC Process', 'Scrum', 'Agile', 'Software Bug Management'],
 };
 
 export const timeline = [

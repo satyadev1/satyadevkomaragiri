@@ -12,7 +12,7 @@ import { Footer } from './components/Footer';
 import { Navigation } from './components/Navigation';
 
 const DEFAULT_THEME = 'total-dark';
-const DEFAULT_BACKGROUND_MODE = 'streak-field';
+const DEFAULT_BACKGROUND_MODE = 'tron-beam';
 const DEFAULT_BACKGROUND_SETTINGS = {
   speed: 1,
   gravity: 1,
@@ -20,7 +20,6 @@ const DEFAULT_BACKGROUND_SETTINGS = {
   density: 1,
 };
 const IS_DEVELOPMENT = import.meta.env.DEV;
-const PRODUCTION_THEME = DEFAULT_THEME;
 const PRODUCTION_BACKGROUND_MODE = DEFAULT_BACKGROUND_MODE;
 const PRODUCTION_BACKGROUND_SETTINGS = DEFAULT_BACKGROUND_SETTINGS;
 
@@ -30,7 +29,6 @@ function readNumberEnv(name, fallback) {
   return Number.isFinite(parsed) ? parsed : fallback;
 }
 
-const DEVELOPMENT_THEME = import.meta.env.VITE_DEV_THEME || DEFAULT_THEME;
 const DEVELOPMENT_BACKGROUND_MODE = import.meta.env.VITE_DEV_BACKGROUND_MODE || DEFAULT_BACKGROUND_MODE;
 const DEVELOPMENT_BACKGROUND_SETTINGS = {
   speed: readNumberEnv('VITE_DEV_BG_SPEED', DEFAULT_BACKGROUND_SETTINGS.speed),
@@ -40,13 +38,8 @@ const DEVELOPMENT_BACKGROUND_SETTINGS = {
 };
 
 function App() {
-  const [theme, setTheme] = useState(() => {
-    if (typeof window === 'undefined') return DEFAULT_THEME;
-    const defaultTheme = IS_DEVELOPMENT ? DEVELOPMENT_THEME : PRODUCTION_THEME;
-    return window.localStorage.getItem('resume-theme') || defaultTheme;
-  });
-  // Theme persists per visitor; background behavior should follow the code defaults
-  // we choose before a push, rather than carrying over prior local experiments.
+  // Always start in Total Dark; visitors can still switch themes for the session.
+  const [theme, setTheme] = useState(DEFAULT_THEME);
   const [backgroundMode, setBackgroundMode] = useState(
     IS_DEVELOPMENT ? DEVELOPMENT_BACKGROUND_MODE : PRODUCTION_BACKGROUND_MODE,
   );
@@ -60,7 +53,6 @@ function App() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem('resume-theme', theme);
   }, [theme]);
 
   useEffect(() => {
@@ -103,14 +95,6 @@ function App() {
   return (
     <>
       <div className="fixed inset-0 -z-10 gradient-bg" aria-hidden="true" />
-      <div
-        className="pointer-halo"
-        aria-hidden="true"
-        style={{
-          left: `${mouse.clientX}px`,
-          top: `${mouse.clientY}px`,
-        }}
-      />
       <div id="canvas-container" aria-hidden="true">
         <Canvas
           camera={{ position: [0, 0, 20], fov: 50 }}

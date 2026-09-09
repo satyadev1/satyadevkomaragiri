@@ -4,6 +4,7 @@ import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { AnimatedBackground } from './AnimatedBackground';
 import { BeamCurve, createCurve } from './BeamCurve';
 import { BeamHead } from './BeamHead';
+import { TronBeam } from './TronBeam';
 
 export function Scene({
   scrollProgress,
@@ -14,6 +15,7 @@ export function Scene({
   backgroundSettings = { speed: 1, gravity: 1, spread: 1, density: 1 },
 }) {
   const progress = typeof beamProgress === 'number' ? beamProgress : scrollProgress;
+  const isTronBeam = backgroundMode === 'tron-beam';
   const groupRef = useRef();
   const mouseRef = useRef(mouse);
   mouseRef.current = mouse;
@@ -35,14 +37,28 @@ export function Scene({
   return (
     <>
       <group ref={groupRef}>
-        <AnimatedBackground
-          mouse={mouse}
-          theme={theme}
-          mode={backgroundMode}
-          settings={backgroundSettings}
-        />
-        <BeamCurve scrollProgress={progress} />
-        <BeamHead scrollProgress={progress} />
+        {isTronBeam ? (
+          <>
+            <AnimatedBackground
+              mouse={mouse}
+              theme={theme}
+              mode="streak-field"
+              settings={backgroundSettings}
+            />
+            <TronBeam theme={theme} />
+          </>
+        ) : (
+          <>
+            <AnimatedBackground
+              mouse={mouse}
+              theme={theme}
+              mode={backgroundMode}
+              settings={backgroundSettings}
+            />
+            <BeamCurve scrollProgress={progress} />
+            <BeamHead scrollProgress={progress} />
+          </>
+        )}
       </group>
       <EffectComposer>
         <Bloom intensity={0.6} luminanceThreshold={0.25} luminanceSmoothing={0.9} radius={0.6} />

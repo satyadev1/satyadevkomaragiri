@@ -39,6 +39,11 @@ export function Achievements() {
                 transition={{ delay: index * 0.06 }}
                 whileHover={{ y: -7 }}
               >
+                {item.image ? (
+                  <div className="achievement-media" aria-hidden="true">
+                    <img src={import.meta.env.BASE_URL + item.image} alt="" />
+                  </div>
+                ) : null}
                 <div className="achievement-topline">
                   <span>{item.year}</span>
                   <Icon size={22} />

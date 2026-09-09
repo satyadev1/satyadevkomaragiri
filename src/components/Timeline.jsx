@@ -40,7 +40,7 @@ export function Timeline() {
         >
           <span className="section-eyebrow">05 / Career journey</span>
           <h2>Built across the stack. Evolved with the field.</h2>
-          <p>Eight years of hands-on engineering, moving from large enterprise platforms into AI-focused product development.</p>
+          <p>Nine-plus years of hands-on engineering, moving from large enterprise platforms into AI-focused product development.</p>
         </motion.div>
 
         <div className="career-sections">

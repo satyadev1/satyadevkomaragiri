@@ -98,21 +98,27 @@ const LAYER_CONFIG = [
 
 const MODE_CONFIGS = {
   'streak-field': {
-    layerConfig: LAYER_CONFIG,
-    lineOpacityMultiplier: 1,
-    headOpacityMultiplier: 1,
-    headSizeMultiplier: 1,
-    lineLengthMultiplier: 1,
-    flowBias: 1,
-    swirlBias: 1,
-    cursorPullBias: 1.55,
-    waveBias: 1,
-    curveBias: 1,
+    layerConfig: [
+      { ...LAYER_CONFIG[0], countRatio: 0.16, opacity: 0.38, speedScale: 0.56, streakLength: 0.8, turbulence: 0.3, cometRatio: 1, cursorRadiusScale: 0.16 },
+      { ...LAYER_CONFIG[1], countRatio: 0.1, opacity: 0.26, speedScale: 0.4, streakLength: 1, turbulence: 0.22, cometRatio: 1, cursorRadiusScale: 0.2 },
+      { ...LAYER_CONFIG[2], countRatio: 0.05, opacity: 0.16, speedScale: 0.28, streakLength: 1.2, turbulence: 0.16, cometRatio: 1, cursorRadiusScale: 0.24 },
+    ],
+    lineOpacityMultiplier: 0,
+    headOpacityMultiplier: 0.94,
+    headSizeMultiplier: 2,
+    lineLengthMultiplier: 0.32,
+    flowBias: 0.52,
+    swirlBias: 0.52,
+    cursorPullBias: 0.28,
+    waveBias: 0.3,
+    curveBias: 0.18,
     tailShape: 'single',
     tailWidthBias: 0,
     spriteKind: 'circle',
     thrustBias: 0,
-    dragBias: 0,
+    dragBias: 0.16,
+    directionAngle: -0.24,
+    directionStrength: 0.24,
   },
   'comet-dust': {
     layerConfig: [
@@ -528,13 +534,22 @@ function StreakLayer({
       const cursorDy = headY - cursorY;
       const distToCursor = Math.max(0.001, Math.hypot(cursorDx, cursorDy));
       const cursorInfluenceRadius = cursorFieldRadius * 2.4;
+      const cursorCoreRadius = cursorFieldRadius * 0.58;
       const fieldFalloff = Math.max(0, 1 - distToCursor / cursorInfluenceRadius);
       const fieldStrength = fieldFalloff * speed * (1.28 + turbulence * 0.24);
+      const pullGate = Math.min(
+        1,
+        Math.max(0, (distToCursor - cursorCoreRadius) / Math.max(0.001, cursorCoreRadius * 1.35)),
+      );
+      const coreFalloff = Math.max(0, 1 - distToCursor / Math.max(0.001, cursorCoreRadius));
       const tangentX = -cursorDy / distToCursor;
       const tangentY = cursorDx / distToCursor;
-      const directPullX = (toCursorX / distToCursor) * fieldStrength * 1.05 * cursorPullBias;
-      const directPullY = (toCursorY / distToCursor) * fieldStrength * 1.05 * cursorPullBias;
-      const swirlStrength = fieldStrength * (0.12 + Math.sin(t * 0.45 + motionSeeds[seedBase + 2]) * 0.04) * swirlBias;
+      const directPullX = (toCursorX / distToCursor) * fieldStrength * 1.05 * cursorPullBias * pullGate;
+      const directPullY = (toCursorY / distToCursor) * fieldStrength * 1.05 * cursorPullBias * pullGate;
+      const coreRepulsion = coreFalloff * speed * (1.45 + turbulence * 0.2) * Math.max(0.7, cursorPullBias);
+      const repelX = (cursorDx / distToCursor) * coreRepulsion;
+      const repelY = (cursorDy / distToCursor) * coreRepulsion;
+      const swirlStrength = fieldStrength * (0.16 + coreFalloff * 0.32 + Math.sin(t * 0.45 + motionSeeds[seedBase + 2]) * 0.04) * swirlBias;
       const ambientFlowStrength = speed * (0.7 + turbulence * 0.12) * flowBias;
       const cursorFlowStrength = fieldStrength * 0.22 * cursorPullBias;
       const flowAngle = t * 0.2 + motionSeeds[seedBase] * 0.7 + headZ * 0.04;
@@ -551,6 +566,7 @@ function StreakLayer({
       const dx =
         velocities[velocityIndex] +
         directPullX +
+        repelX +
         tangentX * swirlStrength +
         directionX +
         thrustX -
@@ -559,6 +575,7 @@ function StreakLayer({
       const dy =
         velocities[velocityIndex + 1] +
         directPullY +
+        repelY +
         tangentY * swirlStrength +
         directionY +
         thrustY -
@@ -581,9 +598,11 @@ function StreakLayer({
       const streakCurveZ = Math.sin(orbitAngle + motionSeeds[seedBase + 1]) * speed * streakLength * 1.4 * curveBias;
       const tailScaleXY = streakLength * 26 * lineLengthMultiplier;
       const tailScaleZ = streakLength * 18 * lineLengthMultiplier;
-      const tailX = wrapPosition(headState[base] - dampedDx * tailScaleXY + streakCurveX, spread * 0.5);
-      const tailY = wrapPosition(headState[base + 1] - dampedDy * tailScaleXY + streakCurveY, spread * 0.5);
-      const tailZ = wrapPosition(headState[base + 2] - dampedDz * tailScaleZ + streakCurveZ, spread * 0.2);
+      // Tails stay relative to their heads. Wrapping each endpoint independently
+      // creates accidental edge-to-edge lines when only one endpoint crosses a boundary.
+      const tailX = headState[base] - dampedDx * tailScaleXY + streakCurveX;
+      const tailY = headState[base + 1] - dampedDy * tailScaleXY + streakCurveY;
+      const tailZ = headState[base + 2] - dampedDz * tailScaleZ + streakCurveZ;
       trailCenters[base] = tailX;
       trailCenters[base + 1] = tailY;
       trailCenters[base + 2] = tailZ;
@@ -595,10 +614,10 @@ function StreakLayer({
         const perpX = -trailDirY / trailLen;
         const perpY = trailDirX / trailLen;
         const tailWidth = streakLength * (0.55 + headSize * 1.8) * tailWidthBias;
-        const leftTailX = wrapPosition(tailX + perpX * tailWidth, spread * 0.5);
-        const leftTailY = wrapPosition(tailY + perpY * tailWidth, spread * 0.5);
-        const rightTailX = wrapPosition(tailX - perpX * tailWidth, spread * 0.5);
-        const rightTailY = wrapPosition(tailY - perpY * tailWidth, spread * 0.5);
+        const leftTailX = tailX + perpX * tailWidth;
+        const leftTailY = tailY + perpY * tailWidth;
+        const rightTailX = tailX - perpX * tailWidth;
+        const rightTailY = tailY - perpY * tailWidth;
 
         pos[lineBase] = leftTailX;
         pos[lineBase + 1] = leftTailY;

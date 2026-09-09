@@ -19,7 +19,8 @@ const themes = [
 ];
 
 const backgroundModes = [
-  { id: 'streak-field', label: 'Streak Field' },
+  { id: 'tron-beam', label: 'Tron Beam' },
+  { id: 'streak-field', label: 'Dot Field' },
   { id: 'comet-dust', label: 'Comet Dust' },
   { id: 'shooting-star', label: 'Shooting Star' },
   { id: 'flow-ribbons', label: 'Flow Ribbons' },
